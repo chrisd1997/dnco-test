@@ -3,6 +3,7 @@ import buildings from './data/buildings.json';
 import {Building} from "./components/building";
 import {Aside} from "./components/aside";
 import {useState} from "react";
+import {Filters} from "./components/filters";
 
 function App() {
   const [selectedBuildingType, setSelectedBuildingType] = useState(null);
@@ -17,18 +18,11 @@ function App() {
     <div className="page-home">
       <h1>Our Offering</h1>
 
-      <div className="filters-wrapper">
-        <ul className="filters">
-          <li onClick={() => setSelectedBuildingType(null)} className={!selectedBuildingType ? 'selected' : ''}>All</li>
-          {buildingTypes.map((buildingType, key) => (
-            <li
-              onClick={() => setSelectedBuildingType(buildingType)}
-              key={key}
-              className={selectedBuildingType === buildingType ? 'selected' : ''}
-            >{buildingType}</li>
-          ))}
-        </ul>
-      </div>
+      <Filters
+        buildingTypes={buildingTypes}
+        selectedBuildingType={selectedBuildingType}
+        setSelectedBuildingType={setSelectedBuildingType}
+      />
 
       <div className="buildings">
         {getBuildings().map((building, key) => (
