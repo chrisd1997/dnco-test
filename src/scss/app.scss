@@ -1,0 +1,23 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700&display=swap');
+
+// Reset
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background);
+  font-size: 14px;
+}
+
+@import 'variables';
+
+// Pages
+@import 'pages/home';
+
+// Components
+@import 'components/building';
+@import 'components/aside';

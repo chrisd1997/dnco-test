@@ -1,0 +1,53 @@
+.building {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  
+  &:hover {
+    cursor: pointer;
+  }
+
+  img {
+    height: 200px;
+    width: 100%;
+  }
+
+  .building-properties {
+    background-color: var(--color-white);
+    width: 95%;
+    margin-top: -30px;
+
+    .building-title {
+      text-align: center;
+      display: block;
+      text-transform: uppercase;
+      font-size: 20px;
+      font-weight: 300;
+      margin-bottom: 10px;
+      margin-top: 15px;
+    }
+
+    .building-meta {
+      padding: 15px;
+
+      .building-meta-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+    }
+
+    .building-button {
+      width: 100%;
+      padding: 15px 20px;
+      background-color: var(--color-black);
+      color: var(--color-white);
+      text-align: center;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+  }
+}

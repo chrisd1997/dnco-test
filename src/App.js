@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import './scss/app.scss';
+import buildings from './data/buildings.json';
+import {Building} from "./components/building";
+import {Aside} from "./components/aside";
+import {useState} from "react";
 
 function App() {
+  const [selectedBuildingType, setSelectedBuildingType] = useState(null);
+  const [selectedBuilding, setSelectedBuilding] = useState(null);
+  const buildingTypes = [...new Set([...buildings].map(item => item.type))];
+
+  const getBuildings = () => {
+    return [...buildings].filter((building) => selectedBuildingType ? building.type === selectedBuildingType : true);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="page-home">
+      <h1>Our Offering</h1>
+
+      <div className="filters-wrapper">
+        <ul className="filters">
+          <li onClick={() => setSelectedBuildingType(null)} className={!selectedBuildingType ? 'selected' : ''}>All</li>
+          {buildingTypes.map((buildingType, key) => (
+            <li
+              onClick={() => setSelectedBuildingType(buildingType)}
+              key={key}
+              className={selectedBuildingType === buildingType ? 'selected' : ''}
+            >{buildingType}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="buildings">
+        {getBuildings().map((building, key) => (
+          <Building
+            building={building}
+            key={key}
+            onClick={() => setSelectedBuilding(building)}
+          />
+        ))}
+      </div>
+
+      <Aside building={selectedBuilding} close={() => setSelectedBuilding(null)} />
     </div>
   );
 }
